@@ -1,0 +1,16 @@
+1. How is the logged in user being kept track of?
+
+A. Validation is being added into "g" flask object and used for verification.
+
+2. What is Flask's g object?
+
+A. It's an object provided by Flask; It's a global namespace for holding data you 
+want for a single app context.
+
+3. What is the purpose of add_user_to_g?
+
+A.
+
+4. What does @app.before_request mean?
+
+A.
