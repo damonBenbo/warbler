@@ -9,8 +9,8 @@ want for a single app context.
 
 3. What is the purpose of add_user_to_g?
 
-A.
+A. Adds current user key to "g" object for logged in user validation.
 
 4. What does @app.before_request mean?
 
-A.
+A. It allows us to execute a function before any requests.
