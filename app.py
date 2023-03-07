@@ -214,7 +214,7 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
-@app.route('/messages/<int:message_id>/like', methods=["POST"])
+@app.route('/messages/<int:message_id>/like', methods=['POST'])
 def add_like(message_id):
     """Add like to message for current authorized user"""
 
@@ -239,14 +239,14 @@ def add_like(message_id):
     return redirect("/")
 
 
-@app.route('/users/<int:user_id>/likes', methods=["GET"])
+@app.route('/users/<int:user_id>/likes', methods=['GET'])
 def show_likes(user_id):
     if not g.user:
         flash("Access denied.", "danger")
         return redirect("/")
 
     user = User.query.get_or_404(user_id)
-    return render_template('user/likes.html', user=user, likes=user.likes)
+    return render_template('users/likes.html', user=user, likes=user.likes)
     
 @app.route('/users/profile', methods=["GET", "POST"])
 def profile():
@@ -367,7 +367,7 @@ def homepage():
 
         liked_msg_ids = [msg.id for msg in g.user.likes]
         
-        return render_template('home.html', messages=messages)
+        return render_template('home.html', messages=messages, likes=liked_msg_ids)
 
     else:
         return render_template('home-anon.html')
