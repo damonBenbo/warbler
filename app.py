@@ -214,6 +214,15 @@ def stop_following(follow_id):
 
     return redirect(f"/users/{g.user.id}/following")
 
+@app.route('/users/<int:user_id>/likes', methods=['GET'])
+def show_likes(user_id):
+    if not g.user:
+        flash("Access denied.", "danger")
+        return redirect("/")
+
+    user = User.query.get_or_404(user_id)
+    return render_template('users/likes.html', user=user, likes=user.likes)
+
 @app.route('/messages/<int:message_id>/like', methods=['POST'])
 def add_like(message_id):
     """Add like to message for current authorized user"""
@@ -237,16 +246,6 @@ def add_like(message_id):
     db.session.commit()
 
     return redirect("/")
-
-
-@app.route('/users/<int:user_id>/likes', methods=['GET'])
-def show_likes(user_id):
-    if not g.user:
-        flash("Access denied.", "danger")
-        return redirect("/")
-
-    user = User.query.get_or_404(user_id)
-    return render_template('users/likes.html', user=user, likes=user.likes)
     
 @app.route('/users/profile', methods=["GET", "POST"])
 def profile():
