@@ -80,7 +80,7 @@ class MessageViewTestCase(TestCase):
 
     def test_add_no_session(self):
         with self.client as c:
-            resp = c.post("/messages/new", data="text": "Good Morning"), follow_redirects=True)
+            resp = c.post("/messages/new", data={"text": "Good Morning"}, follow_redirects=True)
             self.assertEqual(resp.status_code, 200)
             self.assertIn("Access Denied", str(resp.data))
 
